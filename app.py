@@ -8,11 +8,63 @@ import base64
 import pandas as pd
 from pathlib import Path
 import asyncio
-from py2neo import Graph
+from neomodel import config
 
 import chainlit as cl
 from chainlit.element import Element
-from openai import AsyncAssistantEventHandler, AsyncAzureOpenAI, AzureOpenAI
+from openai import AsyncAzureOpenAI, AzureOpenAI
+
+# Define a custom event handler class
+class AsyncAssistantEventHandler:
+    def __init__(self) -> None:
+        pass
+
+    async def on_text_created(self, text) -> None:
+        pass
+
+    async def on_text_delta(self, delta, snapshot) -> None:
+        pass
+
+    async def on_text_done(self, text) -> None:
+        pass
+
+    async def on_tool_call_created(self, tool_call) -> None:
+        pass
+
+    async def on_tool_call_delta(self, delta, snapshot) -> None:
+        pass
+
+    async def on_tool_call_done(self, tool_call) -> None:
+        pass
+
+    async def on_message_done(self, message) -> None:
+        pass
+
+    async def on_run_step_done(self, run_step) -> None:
+        pass
+
+    # Removed RunStreamEvent type hint to fix ImportError
+    async def on_event(self, event) -> None:
+        if event.event == "thread.message.created":
+            await self.on_text_created(event.data)
+        elif event.event == "thread.message.delta":
+            await self.on_text_delta(event.data, event.data)
+        elif event.event == "thread.message.completed":
+            await self.on_text_done(event.data)
+        elif event.event == "thread.run.step.created" and event.data.type == "tool_calls":
+            for tool_call in event.data.step_details.tool_calls:
+                await self.on_tool_call_created(tool_call)
+        elif event.event == "thread.run.step.delta" and event.data.delta.step_details and event.data.delta.step_details.type == "tool_calls":
+            for tool_call in event.data.delta.step_details.tool_calls:
+                await self.on_tool_call_delta(tool_call, tool_call)
+        elif event.event == "thread.run.step.completed" and event.data.type == "tool_calls":
+            for tool_call in event.data.step_details.tool_calls:
+                await self.on_tool_call_done(tool_call)
+        elif event.event == "thread.run.completed":
+            pass
+
+# Import the Neo4j service
+from neo4j_service import Neo4jService, generate_graph_visualization
 
 # Initialize Azure OpenAI clients
 async_openai_client = AsyncAzureOpenAI(
@@ -27,15 +79,11 @@ sync_openai_client = AzureOpenAI(
     api_version=os.getenv("OPENAI_API_VERSION"),
 )
 
-# Connect to Neo4j
-def get_neo4j_connection():
-    return Graph(
-        os.getenv("NEO4J_URI", "bolt://localhost:7687"),
-        auth=(
-            os.getenv("NEO4J_USERNAME", "neo4j"),
-            os.getenv("NEO4J_PASSWORD", "password")
-        )
-    )
+# Configure neomodel connection
+config.DATABASE_URL = os.getenv(
+    "NEO4J_URI", 
+    f"bolt://{os.getenv('NEO4J_USERNAME', 'neo4j')}:{os.getenv('NEO4J_PASSWORD', 'password')}@localhost:7687"
+)
 
 # Load the assistant
 ASSISTANT_ID = os.environ.get("OPENAI_ASSISTANT_ID")
@@ -44,240 +92,6 @@ assistant = sync_openai_client.beta.assistants.retrieve(ASSISTANT_ID)
 # Set the UI name to the assistant's name
 cl.config.ui.name = "Badevel Living Lab Assistant"
 cl.config.ui.description = "Interrogez votre village intelligent avec du texte ou de la voix."
-
-class Neo4jTools:
-    """Tools for working with Neo4j graph database"""
-    
-    @staticmethod
-    def run_query(query: str) -> Dict[str, Any]:
-        """Run a Cypher query against Neo4j and return the results"""
-        try:
-            graph = get_neo4j_connection()
-            results = graph.run(query).data()
-            return {"status": "success", "results": results}
-        except Exception as e:
-            return {"status": "error", "message": str(e)}
-    
-    @staticmethod
-    def get_schema() -> Dict[str, Any]:
-        """Get the complete schema of the Neo4j database (node labels and relationship types)"""
-        # Get all node labels
-        labels_query = """
-        CALL db.labels() YIELD label
-        RETURN label ORDER BY label
-        """
-        labels_result = Neo4jTools.run_query(labels_query)
-        
-        # Get all relationship types
-        rel_types_query = """
-        CALL db.relationshipTypes() YIELD relationshipType
-        RETURN relationshipType ORDER BY relationshipType
-        """
-        rel_types_result = Neo4jTools.run_query(rel_types_query)
-        
-        # Get property keys for each node label
-        labels_with_properties = []
-        if labels_result["status"] == "success":
-            for label_item in labels_result["results"]:
-                label = label_item["label"]
-                props_query = f"""
-                MATCH (n:{label})
-                UNWIND keys(n) AS key
-                RETURN DISTINCT key AS property
-                ORDER BY key
-                """
-                props_result = Neo4jTools.run_query(props_query)
-                
-                if props_result["status"] == "success":
-                    properties = [item["property"] for item in props_result["results"]]
-                    labels_with_properties.append({
-                        "label": label,
-                        "properties": properties
-                    })
-        
-        # Get property keys for each relationship type
-        rel_types_with_properties = []
-        if rel_types_result["status"] == "success":
-            for rel_item in rel_types_result["results"]:
-                rel_type = rel_item["relationshipType"]
-                rel_props_query = f"""
-                MATCH ()-[r:{rel_type}]->()
-                WHERE size(keys(r)) > 0
-                UNWIND keys(r) AS key
-                RETURN DISTINCT key AS property
-                ORDER BY key
-                """
-                rel_props_result = Neo4jTools.run_query(rel_props_query)
-                
-                if rel_props_result["status"] == "success":
-                    properties = [item["property"] for item in rel_props_result["results"]]
-                    rel_types_with_properties.append({
-                        "relationshipType": rel_type,
-                        "properties": properties
-                    })
-        
-        # Get common relationships patterns (which types connect to which)
-        patterns_query = """
-        MATCH (a)-[r]->(b)
-        RETURN DISTINCT labels(a)[0] as sourceLabel, type(r) as relationshipType, labels(b)[0] as targetLabel
-        ORDER BY sourceLabel, relationshipType, targetLabel
-        """
-        patterns_result = Neo4jTools.run_query(patterns_query)
-        
-        return {
-            "status": "success",
-            "nodeLabels": labels_with_properties,
-            "relationshipTypes": rel_types_with_properties,
-            "patterns": patterns_result["results"] if patterns_result["status"] == "success" else []
-        }
-    
-    @staticmethod
-    def get_node_info(node_id: str) -> Dict[str, Any]:
-        """Get information about a specific node"""
-        query = f"""
-        MATCH (n {{id: '{node_id}'}})
-        RETURN n
-        """
-        return Neo4jTools.run_query(query)
-    
-    @staticmethod
-    def find_relationships(node_id: str) -> Dict[str, Any]:
-        """Find all relationships for a specific node"""
-        query = f"""
-        MATCH (n {{id: '{node_id}'}})-[r]-(m)
-        RETURN n, type(r) as relationship, r, m
-        """
-        return Neo4jTools.run_query(query)
-    
-    @staticmethod
-    def find_sensor_readings() -> Dict[str, Any]:
-        """Find all sensor readings"""
-        query = """
-        MATCH (t:Thing)
-        WHERE t.latest_value IS NOT NULL
-        RETURN t.id as id, t.name as name, t.latest_value as value
-        """
-        return Neo4jTools.run_query(query)
-    
-    @staticmethod
-    def find_nodes_by_type(node_type: str) -> Dict[str, Any]:
-        """Find all nodes of a specific type"""
-        query = f"""
-        MATCH (n:{node_type})
-        RETURN n
-        """
-        return Neo4jTools.run_query(query)
-    
-    @staticmethod
-    def count_nodes_by_type() -> Dict[str, Any]:
-        """Count the number of nodes for each node label/type"""
-        query = """
-        CALL db.labels() YIELD label
-        CALL apoc.cypher.run('MATCH (n:' + $label + ') RETURN count(n) as count', {label: label}) YIELD value
-        RETURN label, value.count AS count
-        ORDER BY count DESC
-        """
-        return Neo4jTools.run_query(query)
-    
-    @staticmethod
-    def get_node_properties(node_label: str) -> Dict[str, Any]:
-        """Get all property keys used by nodes with a specific label"""
-        query = f"""
-        MATCH (n:{node_label})
-        UNWIND keys(n) AS property
-        RETURN DISTINCT property
-        ORDER BY property
-        """
-        return Neo4jTools.run_query(query)
-    
-    @staticmethod
-    def find_path_between_nodes(start_id: str, end_id: str) -> Dict[str, Any]:
-        """Find a path between two nodes"""
-        query = f"""
-        MATCH path = shortestPath((a {{id: '{start_id}'}})-[*]-(b {{id: '{end_id}'}}))
-        RETURN path
-        """
-        return Neo4jTools.run_query(query)
-
-def generate_graph_visualization(graph_data, title="Badevel Living Lab Graph"):
-    """Generate a NetworkX graph visualization from Neo4j results"""
-    G = nx.Graph()
-    
-    # Add nodes with labels
-    node_colors = []
-    node_labels = {}
-    
-    for item in graph_data:
-        # Handle different result formats
-        if 'n' in item and 'm' in item:  # Relationship query
-            source_node = item['n']
-            target_node = item['m']
-            
-            # Add nodes
-            if source_node['id'] not in G:
-                G.add_node(source_node['id'])
-                node_labels[source_node['id']] = source_node.get('name', source_node['id'])
-                node_colors.append('skyblue')
-                
-            if target_node['id'] not in G:
-                G.add_node(target_node['id'])
-                node_labels[target_node['id']] = target_node.get('name', target_node['id'])
-                node_colors.append('lightgreen')
-            
-            # Add edge with relationship type as label
-            rel_type = item.get('relationship', 'RELATED_TO')
-            G.add_edge(source_node['id'], target_node['id'], label=rel_type)
-            
-        elif 'n' in item:  # Single node query
-            node = item['n']
-            G.add_node(node['id'])
-            node_labels[node['id']] = node.get('name', node['id'])
-            node_colors.append('skyblue')
-            
-        elif 'path' in item:  # Path query
-            path = item['path']
-            nodes = path.nodes
-            relationships = path.relationships
-            
-            for node in nodes:
-                G.add_node(node['id'])
-                node_labels[node['id']] = node.get('name', node['id'])
-                node_colors.append('lightblue')
-                
-            for rel in relationships:
-                start_node = rel.start_node['id']
-                end_node = rel.end_node['id']
-                G.add_edge(start_node, end_node, label=rel.type)
-    
-    # Create the plot
-    plt.figure(figsize=(12, 10))
-    pos = nx.spring_layout(G, seed=42)
-    
-    # Draw nodes
-    nx.draw_networkx_nodes(G, pos, node_color=node_colors, alpha=0.8, node_size=700)
-    
-    # Draw edges
-    nx.draw_networkx_edges(G, pos, width=1.5, alpha=0.7)
-    
-    # Draw node labels
-    nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=10)
-    
-    # Draw edge labels
-    edge_labels = nx.get_edge_attributes(G, 'label')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
-    
-    plt.title(title, fontsize=16)
-    plt.axis('off')
-    
-    # Convert plot to base64 for embedding in HTML
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png', dpi=150, bbox_inches='tight')
-    plt.close()
-    buffer.seek(0)
-    image_png = buffer.getvalue()
-    buffer.close()
-    
-    return base64.b64encode(image_png).decode('utf-8')
 
 def create_markdown_table(data):
     """Convert a list of dictionaries to a markdown table"""
@@ -313,7 +127,7 @@ def process_neo4j_results(results):
         processed_item = {}
         
         for key, value in item.items():
-            # If it's a Neo4j Node object, extract the properties
+            # If it's a Neo4j Node or dictionary with items() method
             if hasattr(value, 'items') and callable(getattr(value, 'items')):
                 processed_item[key] = dict(value)
             else:
@@ -346,7 +160,6 @@ class EventHandler(AsyncAssistantEventHandler):
         self.current_step.language = "python"
         await self.current_step.send()
 
-
     async def on_tool_call_delta(self, delta, snapshot):
         if snapshot.id != self.current_tool_call:
             self.current_tool_call = snapshot.id
@@ -376,7 +189,6 @@ class EventHandler(AsyncAssistantEventHandler):
                 if delta.code_interpreter.input:
                     await self.current_step.stream_token(delta.code_interpreter.input)
                     
-        # Handle Neo4j function calls - this should be at same level as if delta.type == "code_interpreter"
         elif delta.type == "function" and delta.function.name.startswith("neo4j_"):
             function_name = delta.function.name.replace("neo4j_", "")
             
@@ -389,9 +201,9 @@ class EventHandler(AsyncAssistantEventHandler):
                     print(f"Error parsing arguments for function {function_name}")
                     args = {}
             
-            # Now process the function calls with proper arguments
+            # Process the function calls with proper arguments
             if function_name == "get_node_info" and "node_id" in args:
-                result = Neo4jTools.get_node_info(args["node_id"])
+                result = Neo4jService.get_node_info(args["node_id"])
                 
                 if result["status"] == "success" and result["results"]:
                     processed_data = process_neo4j_results(result["results"])
@@ -402,7 +214,7 @@ class EventHandler(AsyncAssistantEventHandler):
                     self.function_results += f"\n\n{table}\n\n"
             
             elif function_name == "find_relationships" and "node_id" in args:
-                result = Neo4jTools.find_relationships(args["node_id"])
+                result = Neo4jService.find_relationships(args["node_id"])
                 
                 if result["status"] == "success" and result["results"]:
                     processed_data = process_neo4j_results(result["results"])
@@ -424,21 +236,18 @@ class EventHandler(AsyncAssistantEventHandler):
                     self.current_message.elements.append(image_element)
                         
             elif function_name == "find_sensor_readings":
-                result = Neo4jTools.find_sensor_readings()
+                result = Neo4jService.find_sensor_readings()
                 
                 if result["status"] == "success" and result["results"]:
                     processed_data = process_neo4j_results(result["results"])
                     table = create_markdown_table(processed_data)
-                    
-                    # Create a DataFrame for visualization
-                    df = pd.DataFrame(processed_data)
                     
                     if not hasattr(self, "function_results"):
                         self.function_results = ""
                     self.function_results += f"\n\n{table}\n\n"
             
             elif function_name == "count_nodes_by_type":
-                result = Neo4jTools.count_nodes_by_type()
+                result = Neo4jService.count_nodes_by_type()
                 
                 if result["status"] == "success" and result["results"]:
                     processed_data = process_neo4j_results(result["results"])
@@ -478,7 +287,7 @@ class EventHandler(AsyncAssistantEventHandler):
                         self.current_message.elements.append(image_element)
             
             elif function_name == "get_node_properties" and "node_label" in args:
-                result = Neo4jTools.get_node_properties(args["node_label"])
+                result = Neo4jService.get_node_properties(args["node_label"])
                 
                 if result["status"] == "success" and result["results"]:
                     processed_data = process_neo4j_results(result["results"])
@@ -489,7 +298,7 @@ class EventHandler(AsyncAssistantEventHandler):
                     self.function_results += f"\n\n{table}\n\n"
                     
             elif function_name == "find_nodes_by_type" and "node_type" in args:
-                result = Neo4jTools.find_nodes_by_type(args["node_type"])
+                result = Neo4jService.find_nodes_by_type(args["node_type"])
                 
                 if result["status"] == "success" and result["results"]:
                     processed_data = process_neo4j_results(result["results"])
@@ -500,7 +309,7 @@ class EventHandler(AsyncAssistantEventHandler):
                     self.function_results += f"\n\n{table}\n\n"
                     
             elif function_name == "find_path_between_nodes" and "start_id" in args and "end_id" in args:
-                result = Neo4jTools.find_path_between_nodes(args["start_id"], args["end_id"])
+                result = Neo4jService.find_path_between_nodes(args["start_id"], args["end_id"])
                 
                 if result["status"] == "success" and result["results"]:
                     graph_image = generate_graph_visualization(
@@ -519,7 +328,7 @@ class EventHandler(AsyncAssistantEventHandler):
                     self.current_message.elements.append(image_element)
                     
             elif function_name == "get_schema":
-                result = Neo4jTools.get_schema()
+                result = Neo4jService.get_schema()
                 
                 if result["status"] == "success":
                     # Process node labels
@@ -566,6 +375,17 @@ class EventHandler(AsyncAssistantEventHandler):
                     if not hasattr(self, "function_results"):
                         self.function_results = ""
                     self.function_results += f"\n\n{node_labels_table}\n\n{rel_types_table}\n\n{patterns_table}\n\n"
+            
+            elif function_name == "run_query" and "query" in args:
+                result = Neo4jService.run_cypher_query(args["query"])
+                
+                if result["status"] == "success" and result["results"]:
+                    processed_data = process_neo4j_results(result["results"])
+                    table = create_markdown_table(processed_data)
+                    
+                    if not hasattr(self, "function_results"):
+                        self.function_results = ""
+                    self.function_results += f"\n\n{table}\n\n"
 
     async def on_tool_call_done(self, tool_call):
         # Add function results to the message if available
@@ -575,13 +395,25 @@ class EventHandler(AsyncAssistantEventHandler):
         
         await self.current_message.update()
 
-@cl.step(type="tool")
 async def speech_to_text(audio_file):
-    """Transcribe audio to text using Azure OpenAI Whisper model"""
-    response = await async_openai_client.audio.transcriptions.create(
-        model=os.getenv("OPENAI_WHISPER_MODEL"), file=audio_file
-    )
-    return response.text
+    # Manually create a step for the transcription process
+    step = cl.Step(name="Speech to Text", type="tool")
+    await step.send()  # Send the step to the Chainlit UI
+    try:
+        # Perform the transcription
+        response = await async_openai_client.audio.transcriptions.create(
+            model=os.getenv("OPENAI_WHISPER_MODEL"), file=audio_file
+        )
+        transcription = response.text
+        # Update the step with the transcription result
+        step.output = transcription
+        await step.update()  # Update the UI with the output
+        return transcription
+    except Exception as e:
+        # Handle errors and update the step with the error message
+        step.output = f"Error: {str(e)}"
+        await step.update()
+        raise
 
 async def upload_files(files: List[Element]):
     """Upload files to Azure OpenAI for processing"""
@@ -637,13 +469,13 @@ Vous pouvez me parler ou écrire vos questions!"""
         schema_msg = cl.Message(content="📊 *Analyse de la structure de la base de données...*")
         await schema_msg.send()
         
-        # Get database schema
-        schema_result = Neo4jTools.get_schema()
+        # Get database schema using Neo4jService
+        schema_result = Neo4jService.get_schema()
         if schema_result["status"] == "success":
             schema_info = "## Structure de la base de données\n\n"
             
             # Node labels with counts
-            count_result = Neo4jTools.count_nodes_by_type()
+            count_result = Neo4jService.count_nodes_by_type()
             if count_result["status"] == "success":
                 schema_info += "### Types de nœuds\n\n"
                 schema_info += "| Type | Nombre | Propriétés |\n|------|--------|------------|\n"
@@ -925,7 +757,8 @@ async def on_audio_end(elements: list[Element]):
 if __name__ == "__main__":
     # Test Neo4j connection on startup
     try:
-        graph = get_neo4j_connection()
+        from neomodel import db
+        db.cypher_query("MATCH (n) RETURN count(n) as count LIMIT 1")
         print("✅ Successfully connected to Neo4j database!")
     except Exception as e:
         print(f"❌ Failed to connect to Neo4j: {str(e)}")

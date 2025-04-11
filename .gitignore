@@ -20,7 +20,9 @@ __pycache__/
 
 .env
 comments.txt
-
+.chainlit
+./.chainlit
+./.chainlit/*
 
 .DS_Store
 *.swp
