@@ -1,55 +1,86 @@
 """
-Neo4j service module that replaces the Neo4jTools class, providing
-database access methods using neomodel instead of py2neo.
+Modified Neo4j service module that works with Streamlit's hot-reloading feature.
 """
-from typing import Dict, Any, List, Optional, Union
+import os
+from typing import Dict, Any, List, Optional
 import json
 import networkx as nx
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 import pandas as pd
-from neomodel import db
+from neo4j import GraphDatabase
+from dotenv import load_dotenv
 
-from models import (
-    Application, Department, Manufacturer, Module, Network, 
-    Power, Sensor, Thing, ThingType, Vendor, Location,
-    find_node_by_id, get_node_counts
-)
-
+# Load environment variables
+load_dotenv()
+# Import from fixed models module instead of the original one
+# from models import (
+#     Application, Department, Manufacturer, Module, Network, 
+#     Power, Sensor, Thing, ThingType, Vendor, Location,
+#     find_node_by_id, get_node_counts
+# )
 
 class Neo4jService:
-    """Service class for Neo4j database operations using neomodel"""
+    """Service class for Neo4j database operations using direct driver"""
+    
+    _driver = None
+    
+    @classmethod
+    def get_driver(cls):
+        """Get or create Neo4j driver"""
+        if cls._driver is None:
+            # Get connection details from environment variables
+            uri_env = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+            username = os.getenv("NEO4J_USERNAME", "neo4j")
+            password = os.getenv("NEO4J_PASSWORD", "password")
+            uri = os.getenv("NEO4J_URI_CYPHER", "bolt://localhost:7687")
+            
+            cls._driver = GraphDatabase.driver(uri, auth=(username, password))
+        return cls._driver
+    
+    @classmethod
+    def close_driver(cls):
+        """Close the Neo4j driver if it exists"""
+        if cls._driver is not None:
+            cls._driver.close()
+            cls._driver = None
     
     @staticmethod
     def run_cypher_query(query: str, params: Dict = None) -> Dict[str, Any]:
         """
         Run a raw Cypher query against Neo4j and return the results.
-        This allows custom queries not easily expressible through the ORM.
         """
+        driver = Neo4jService.get_driver()
         try:
             if params is None:
                 params = {}
             
-            results, meta = db.cypher_query(query, params)
-            columns = meta['fields']
-            
-            # Format results as dictionaries with column names as keys
-            formatted_results = []
-            for row in results:
-                formatted_row = {}
-                for i, col in enumerate(columns):
-                    # Handle neomodel node objects
-                    if hasattr(row[i], '__node__'):
-                        # Convert node to dictionary
-                        node_dict = dict(row[i].__node__)
-                        node_dict['labels'] = list(row[i].__node__._labels)
-                        formatted_row[col] = node_dict
-                    else:
-                        formatted_row[col] = row[i]
-                formatted_results.append(formatted_row)
+            with driver.session() as session:
+                result = session.run(query, params)
+                columns = result.keys()
+                records = list(result)
                 
-            return {"status": "success", "results": formatted_results}
+                # Format results as dictionaries with column names as keys
+                formatted_results = []
+                for record in records:
+                    formatted_row = {}
+                    for i, col in enumerate(columns):
+                        # Handle Neo4j nodes
+                        value = record[col]
+                        if hasattr(value, 'items') and callable(getattr(value, 'items')):
+                            # Convert dictionaries
+                            formatted_row[col] = dict(value)
+                        elif hasattr(value, 'labels') and callable(getattr(value, 'labels')):
+                            # Convert Neo4j node to dictionary
+                            node_dict = dict(value)
+                            node_dict['labels'] = list(value.labels)
+                            formatted_row[col] = node_dict
+                        else:
+                            formatted_row[col] = value
+                    formatted_results.append(formatted_row)
+                
+                return {"status": "success", "results": formatted_results}
         except Exception as e:
             return {"status": "error", "message": str(e)}
     
@@ -57,7 +88,6 @@ class Neo4jService:
     def get_schema() -> Dict[str, Any]:
         """
         Get the complete schema of the Neo4j database (node labels and relationship types).
-        This uses raw Cypher queries similar to the original implementation for comprehensive schema info.
         """
         # Get all node labels
         labels_query = """
@@ -131,104 +161,91 @@ class Neo4jService:
     
     @staticmethod
     def get_node_info(node_id: str) -> Dict[str, Any]:
-        """Get information about a specific node using neomodel"""
-        try:
-            node = find_node_by_id(node_id)
-            if node:
-                # Convert neomodel node to dictionary format for consistency
-                node_props = {k: v for k, v in node.__properties__.items() if not k.startswith('__')}
-                # Add back "id" property for compatibility with original code
-                node_props['id'] = node_props.get('identifier', '')
-                node_props['labels'] = [node.__class__.__name__]
-                return {"status": "success", "results": [{"n": node_props}]}
-            else:
-                return {"status": "error", "message": f"Node with ID {node_id} not found"}
-        except Exception as e:
-            return {"status": "error", "message": str(e)}
+        """Get information about a specific node"""
+        query = """
+        MATCH (n {identifier: $node_id})
+        RETURN n
+        """
+        return Neo4jService.run_cypher_query(query, {"node_id": node_id})
     
     @staticmethod
     def find_relationships(node_id: str) -> Dict[str, Any]:
         """Find all relationships for a specific node"""
-        # Update the query to use identifier instead of id
         query = """
-        MATCH (n)-[r]-(m)
-        WHERE n.identifier = $node_id
+        MATCH (n {identifier: $node_id})-[r]-(m)
         RETURN n, type(r) as relationship, r, m
         """
         return Neo4jService.run_cypher_query(query, {"node_id": node_id})
     
     @staticmethod
     def find_sensor_readings() -> Dict[str, Any]:
-        """Find all sensor readings using neomodel"""
-        try:
-            # Using the Thing model to find all things with latest_value set
-            things_with_readings = Thing.nodes.filter(latest_value__isnull=False)
-            
-            results = []
-            for thing in things_with_readings:
-                results.append({
-                    "id": thing.identifier,  # Use identifier instead of id
-                    "name": thing.name,
-                    "value": thing.latest_value
-                })
-                
-            return {"status": "success", "results": results}
-        except Exception as e:
-            return {"status": "error", "message": str(e)}
+        """Find all sensor readings"""
+        query = """
+        MATCH (t:Thing)
+        WHERE t.latest_value IS NOT NULL
+        RETURN t.identifier as id, t.name as name, t.latest_value as value
+        """
+        return Neo4jService.run_cypher_query(query)
     
     @staticmethod
     def find_nodes_by_type(node_type: str) -> Dict[str, Any]:
-        """Find all nodes of a specific type using neomodel"""
-        try:
-            # Map node_type string to neomodel class
-            node_classes = {
-                "Application": Application,
-                "Department": Department,
-                "Manufacturer": Manufacturer,
-                "Module": Module,
-                "Network": Network,
-                "Power": Power,
-                "Sensor": Sensor,
-                "Thing": Thing,
-                "ThingType": ThingType,
-                "Vendor": Vendor,
-                "Location": Location
-            }
-            
-            if node_type not in node_classes:
-                return {"status": "error", "message": f"Unknown node type: {node_type}"}
-            
-            node_class = node_classes[node_type]
-            nodes = node_class.nodes.all()
-            
-            results = []
-            for node in nodes:
-                # Convert node to dictionary
-                node_props = {k: v for k, v in node.__properties__.items() if not k.startswith('__')}
-                # Add back "id" property for compatibility
-                node_props['id'] = node_props.get('identifier', '')
-                results.append({"n": node_props})
-                
-            return {"status": "success", "results": results}
-        except Exception as e:
-            return {"status": "error", "message": str(e)}
+        """Find all nodes of a specific type"""
+        query = f"""
+        MATCH (n:{node_type})
+        RETURN n
+        """
+        return Neo4jService.run_cypher_query(query)
     
     @staticmethod
     def count_nodes_by_type() -> Dict[str, Any]:
-        """Count the number of nodes for each node label/type using neomodel"""
+        """Count the number of nodes for each node label/type"""
+        query = """
+        CALL db.labels() YIELD label
+        CALL apoc.cypher.run('MATCH (n:' + $label + ') RETURN count(n) as count', {}) YIELD value
+        RETURN $label as label, value.count as count
+        """
+        
+        # If APOC is not available, fall back to a more basic query
         try:
-            counts = get_node_counts()
+            result = Neo4jService.run_cypher_query(query, {"label": "Test"})
+            if result["status"] == "error" and "APOC" in result["message"]:
+                # Fall back to basic query
+                return Neo4jService._count_nodes_basic()
+            else:
+                return Neo4jService.run_cypher_query(query)
+        except:
+            return Neo4jService._count_nodes_basic()
+    
+    @staticmethod
+    def _count_nodes_basic() -> Dict[str, Any]:
+        """Count nodes without using APOC"""
+        # First get all labels
+        labels_query = """
+        CALL db.labels() YIELD label
+        RETURN label
+        """
+        labels_result = Neo4jService.run_cypher_query(labels_query)
+        
+        if labels_result["status"] != "success":
+            return labels_result
+        
+        # Count nodes for each label
+        counts = []
+        for label_item in labels_result["results"]:
+            label = label_item["label"]
+            count_query = f"""
+            MATCH (n:{label})
+            RETURN count(n) as count
+            """
+            count_result = Neo4jService.run_cypher_query(count_query)
             
-            results = []
-            for label, count in counts.items():
-                results.append({
+            if count_result["status"] == "success" and count_result["results"]:
+                counts.append({
                     "label": label,
-                    "count": count
+                    "count": count_result["results"][0]["count"]
                 })
-                
-            return {"status": "success", "results": results}
-        except Exception as e:
-            return {"status": "error", "message": str(e)}
+        
+        return {"status": "success", "results": counts}
     
     @staticmethod
     def get_node_properties(node_label: str) -> Dict[str, Any]:
@@ -244,10 +261,8 @@ class Neo4jService:
     @staticmethod
     def find_path_between_nodes(start_id: str, end_id: str) -> Dict[str, Any]:
         """Find a path between two nodes"""
-        # Update query to use identifier instead of id
         query = """
-        MATCH path = shortestPath((a)-[*]-(b))
-        WHERE a.identifier = $start_id AND b.identifier = $end_id
+        MATCH path = shortestPath((a {identifier: $start_id})-[*]-(b {identifier: $end_id}))
         RETURN path
         """
         return Neo4jService.run_cypher_query(query, {"start_id": start_id, "end_id": end_id})
@@ -296,48 +311,64 @@ def generate_graph_visualization(graph_data, title="Badevel Living Lab Graph"):
             
         elif 'path' in item:  # Path query
             path = item['path']
-            nodes = path.nodes
-            relationships = path.relationships
-            
-            for node in nodes:
-                node_id = node.get('identifier', node.get('id', ''))
-                if node_id:
-                    G.add_node(node_id)
-                    node_labels[node_id] = node.get('name', node_id)
-                    node_colors.append('lightblue')
+            if hasattr(path, 'nodes') and hasattr(path, 'relationships'):
+                nodes = path.nodes
+                relationships = path.relationships
                 
-            for rel in relationships:
-                start_node = rel.start_node.get('identifier', rel.start_node.get('id', ''))
-                end_node = rel.end_node.get('identifier', rel.end_node.get('id', ''))
-                if start_node and end_node:
-                    G.add_edge(start_node, end_node, label=rel.type)
+                for node in nodes:
+                    node_id = node.get('identifier', node.get('id', ''))
+                    if node_id:
+                        G.add_node(node_id)
+                        node_labels[node_id] = node.get('name', node_id)
+                        node_colors.append('lightblue')
+                    
+                for rel in relationships:
+                    start_node = rel.start_node.get('identifier', rel.start_node.get('id', ''))
+                    end_node = rel.end_node.get('identifier', rel.end_node.get('id', ''))
+                    if start_node and end_node:
+                        G.add_edge(start_node, end_node, label=rel.type)
     
-    # Create the plot
-    plt.figure(figsize=(12, 10))
-    pos = nx.spring_layout(G, seed=42)
-    
-    # Draw nodes
-    nx.draw_networkx_nodes(G, pos, node_color=node_colors, alpha=0.8, node_size=700)
-    
-    # Draw edges
-    nx.draw_networkx_edges(G, pos, width=1.5, alpha=0.7)
-    
-    # Draw node labels
-    nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=10)
-    
-    # Draw edge labels
-    edge_labels = nx.get_edge_attributes(G, 'label')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
-    
-    plt.title(title, fontsize=16)
-    plt.axis('off')
-    
-    # Convert plot to base64 for embedding in HTML
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png', dpi=150, bbox_inches='tight')
-    plt.close()
-    buffer.seek(0)
-    image_png = buffer.getvalue()
-    buffer.close()
-    
-    return base64.b64encode(image_png).decode('utf-8')
+    # Create the plot (only if there are nodes)
+    if G.number_of_nodes() > 0:
+        plt.figure(figsize=(12, 10))
+        pos = nx.spring_layout(G, seed=42)
+        
+        # Draw nodes
+        nx.draw_networkx_nodes(G, pos, node_color=node_colors, alpha=0.8, node_size=700)
+        
+        # Draw edges
+        nx.draw_networkx_edges(G, pos, width=1.5, alpha=0.7)
+        
+        # Draw node labels
+        nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=10)
+        
+        # Draw edge labels
+        edge_labels = nx.get_edge_attributes(G, 'label')
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
+        
+        plt.title(title, fontsize=16)
+        plt.axis('off')
+        
+        # Convert plot to base64 for embedding in HTML
+        buffer = BytesIO()
+        plt.savefig(buffer, format='png', dpi=150, bbox_inches='tight')
+        plt.close()
+        buffer.seek(0)
+        image_png = buffer.getvalue()
+        buffer.close()
+        
+        return base64.b64encode(image_png).decode('utf-8')
+    else:
+        # Return empty image if no nodes
+        plt.figure(figsize=(12, 10))
+        plt.text(0.5, 0.5, "No data to visualize", ha="center", va="center", fontsize=16)
+        plt.axis('off')
+        
+        buffer = BytesIO()
+        plt.savefig(buffer, format='png', dpi=150)
+        plt.close()
+        buffer.seek(0)
+        image_png = buffer.getvalue()
+        buffer.close()
+        
+        return base64.b64encode(image_png).decode('utf-8')

@@ -15,6 +15,7 @@ from models import (
     Power, Sensor, Thing, ThingType, Vendor, Location,
     clear_database, find_node_by_id
 )
+
 import dotenv
 # Load environment variables from .env file
 dotenv.load_dotenv()

@@ -1,77 +1,87 @@
-# Badevel Living Lab Assistant
+# Badevel Living Lab Assistant - Streamlit Version
 
-Une interface conversationnelle (chatbot) qui permet d'interroger la base de données du village intelligent de Badevel en langage naturel, avec visualisation graphique des résultats.
+A Streamlit-based chatbot interface for exploring the smart village data of Badevel through a Neo4j graph database.
 
-![Badevel Living Lab](logo-femto.png)
+## Features
 
-## Fonctionnalités
+- 🔍 Explore data from the digital twin of the village
+- 💬 Ask questions in French or English about the village infrastructure
+- 📊 Visualize relationships between different elements
+- 📱 View real-time sensor measurements
+- 🏢 Learn about buildings and their equipment
 
-- 🗣️ **Interface conversationnelle** en français et en anglais
-- 🔊 **Reconnaissance vocale** pour les requêtes orales
-- 📊 **Visualisation graphique** des relations entre éléments
-- 📈 **Tableaux et graphiques** pour présenter les données
-- 🔍 **Requêtes intelligentes** vers la base de données Neo4j
+## Setup Instructions
 
-## Prérequis
+### 1. Install Dependencies
 
-- Python 3.9+
-- Neo4j Database
-- Compte Azure OpenAI avec un accès aux API
-- Configuration des variables d'environnement
-
-## Installation
-
-1. Clonez ce dépôt :
-```bash
-git clone https://github.com/votre-nom/badevel-living-lab-assistant.git
-cd badevel-living-lab-assistant
-```
-
-2. Installez les dépendances :
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Copiez le fichier `.env.example` en `.env` et configurez vos variables d'environnement :
-```bash
-cp .env.example .env
-nano .env  # ou utilisez votre éditeur préféré
+### 2. Environment Variables
+
+Create a `.env` file with the following variables:
+
+```
+# Azure OpenAI Configuration
+OPENAI_API_BASE=https://your-azure-openai-endpoint
+OPENAI_API_KEY=your-api-key
+OPENAI_API_VERSION=2023-12-01-preview
+OPENAI_ASSISTANT_ID=your-assistant-id
+OPENAI_ASSISTANT_MODEL=gpt-4
+OPENAI_WHISPER_MODEL=whisper-1
+
+# Neo4j Configuration
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=your-password
 ```
 
-4. Créez l'assistant OpenAI (à faire une seule fois) :
+### 3. Create the Assistant
+
+Run the following script to create the Azure OpenAI Assistant:
+
 ```bash
 python create_assistant.py
 ```
-   - Notez l'ID de l'assistant généré et ajoutez-le à votre fichier `.env`
 
-## Lancement de l'application
+Make sure to copy the generated Assistant ID to your `.env` file.
+
+### 4. Import Data (if needed)
+
+If you need to import data into Neo4j:
 
 ```bash
-chainlit run app.py
+python data_import.py
 ```
 
-L'application sera disponible à l'adresse : [http://localhost:8000](http://localhost:8000)
+### 5. Run the Application
 
-## Structure de la base de données
+```bash
+streamlit run app.py
+```
 
-La base de données Neo4j contient les nœuds suivants :
-- `Thing` : Les capteurs et appareils du village
-- `Location` : Les bâtiments et emplacements
-- `Sensor` : Types de capteurs disponibles
-- `Power` : Sources d'énergie
-- `Network` : Types de réseaux de communication
-- `Application` : Applications utilisant les données
-- `ThingType` : Types d'objets intelligents
-- `Manufacturer` : Fabricants des appareils
-- `Vendor` : Fournisseurs des appareils
+The application will be available at `http://localhost:8501`.
 
-## Exemples d'utilisation
+## Usage
 
-- "Quelle est la température actuelle à l'école maternelle ?"
-- "Montre-moi tous les capteurs de la mairie"
-- "Quel est le chemin de connexion entre le capteur de température et l'application de monitoring ?"
-- "Quels sont les bâtiments avec la meilleure efficacité énergétique ?"
+1. Type your questions about the Badevel smart village in the text input field.
+2. Click "Send" to submit your question.
+3. View the assistant's response, which may include text, tables, or visualizations.
+4. Use the example questions in the sidebar for ideas on what to ask.
 
-## Licence
+## Architecture
 
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
+This application uses:
+- **Streamlit**: For the user interface
+- **Azure OpenAI**: For natural language processing and reasoning
+- **Neo4j**: For graph database storage and querying of the digital twin data
+- **Matplotlib/NetworkX**: For data visualization
+
+## Project Structure
+
+- `app.py`: Main Streamlit application
+- `neo4j_service.py`: Service for Neo4j database operations
+- `models.py`: Neomodel schema definitions
+- `create_assistant.py`: Script to create the Azure OpenAI Assistant
+- `data_import.py`: Script to import data into Neo4j

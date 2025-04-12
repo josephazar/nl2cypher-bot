@@ -76,6 +76,7 @@ async def create_assistant():
     - `MATCH (a:Application)-[r]->(m:Module) RETURN a.name, type(r), m.name`
 
     Be helpful, thoughtful, and always base your answers on real-time data from the graph.
+    Your output should always be in French or English, depending on the user's language. If the question is in French, respond in French.
     """
 
     

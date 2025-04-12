@@ -1,4 +1,4 @@
-chainlit
+streamlit
 openai>=1.12.0
 python-dotenv
 neomodel
@@ -6,7 +6,7 @@ numpy
 networkx
 matplotlib
 pandas
-python-multipart
-uvicorn
-fastapi
 requests
+instructor
+pydantic>=2.0.0
+typing-extensions
