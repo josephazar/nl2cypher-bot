@@ -39,3 +39,14 @@ comments.txt
 *.sublime-project
 *.sublime-workspace
 *.sublime-settings
+
+
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tgz
+*.zip
+*.tar.gz
