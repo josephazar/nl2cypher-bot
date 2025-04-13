@@ -1,7 +1,8 @@
-streamlit
+flask>=2.0.0
 openai>=1.12.0
 python-dotenv
 neomodel
+neo4j
 numpy
 networkx
 matplotlib
@@ -10,3 +11,4 @@ requests
 instructor
 pydantic>=2.0.0
 typing-extensions
+gunicorn>=20.1.0

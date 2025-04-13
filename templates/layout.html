@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Badevel Living Lab Assistant{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- NeoVis.js for Neo4j visualization -->
+    <script src="https://cdn.neo4j.com/codes/neovis.js/v1.5.0/neovis.js"></script>
+    
+    <!-- Additional resources -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Microsoft Cognitive Services Speech SDK - Using official minimized CDN -->
+    <script>
+        console.log("Before loading Speech SDK");
+        window.sdkLoadingStarted = true;
+    </script>
+    
+    <!-- Use official SDK with explicit UMD build -->
+    <script 
+        src="https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@1.30.1/distrib/browser/microsoft.cognitiveservices.speech.sdk.min.js"
+        integrity="sha256-3QDPhTGJ6hfPQuGO9cN6eFkXEKm7cHiRneA1+QG2YjA="
+        crossorigin="anonymous"
+        onload="console.log('SDK loaded successfully from CDN'); window.sdkLoaded = true;"
+        onerror="console.error('Failed to load SDK from CDN');">
+    </script>
+    
+    <script>
+        console.log("After loading Speech SDK");
+        console.log("Microsoft global object:", typeof Microsoft !== 'undefined' ? 'Available' : 'Not available');
+        console.log("SpeechSDK global object:", typeof SpeechSDK !== 'undefined' ? 'Available' : 'Not available');
+    </script>
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header class="app-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-logo">🏙️</div>
+                <div class="header-text">
+                    <h1 class="header-title">Badevel Living Lab Assistant</h1>
+                    <p class="header-subtitle">Explorez les données du village intelligent de Badevel</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container my-4">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer class="container-fluid py-3 text-center">
+        <p class="text-muted">© 2025 Badevel Living Lab</p>
+    </footer>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -30,3 +30,12 @@ comments.txt
 *.swn
 *.swo
 *.swn
+
+.files/
+./.files/
+.idea/
+.vscode/
+*.iml
+*.sublime-project
+*.sublime-workspace
+*.sublime-settings

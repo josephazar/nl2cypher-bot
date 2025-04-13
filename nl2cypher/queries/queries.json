@@ -1,0 +1,202 @@
+[
+  {
+    "question": "Quels sont les capteurs installés à l'École Maternelle ?",
+    "cypher": "MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'École Maternelle'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs mesurent la température ?",
+    "cypher": "MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Capteur Température'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quel est le dernier emplacement de Capteur07 ?",
+    "cypher": "MATCH (t:Thing {identifier: 'Capteur07'})-[:IS_INSTALLED_IN]->(l:Location) RETURN l.name AS emplacement"
+  },
+  {
+    "question": "Quels capteurs sont alimentés par panneaux solaires ?",
+    "cypher": "MATCH (t:Thing)-[:IS_POWERED_BY]->(p:Power {name: 'Panneaux Solaires'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs utilisent le réseau LoRaWAN ?",
+    "cypher": "MATCH (t:Thing)-[:IS_USING]->(n:Network {name: 'Réseau LoRaWAN'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont installés à Mairie ?",
+    "cypher": "MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'Mairie'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont installés à École Primaire ?",
+    "cypher": "MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'École Primaire'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont installés à Salle des Fêtes ?",
+    "cypher": "MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'Salle des Fêtes'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont installés à Station Hydrogene ?",
+    "cypher": "MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'Station Hydrogene'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs mesurent avec Capteur Température ?",
+    "cypher": "MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Capteur Température'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs mesurent avec Capteur CO2 ?",
+    "cypher": "MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Capteur CO2'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs mesurent avec Capteur Pression ?",
+    "cypher": "MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Capteur Pression'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs utilisent le réseau Réseau LoRaWAN ?",
+    "cypher": "MATCH (t:Thing)-[:IS_USING]->(n:Network {name: 'Réseau LoRaWAN'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs utilisent le réseau Réseau SigFox ?",
+    "cypher": "MATCH (t:Thing)-[:IS_USING]->(n:Network {name: 'Réseau SigFox'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs utilisent le réseau NB-IoT ?",
+    "cypher": "MATCH (t:Thing)-[:IS_USING]->(n:Network {name: 'NB-IoT'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs envoient des données vers l'application SmartGrid Supervision ?",
+    "cypher": "MATCH (t:Thing)-[:IS_FEEDING_DATA_TO]->(a:Application {name: 'SmartGrid Supervision'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs envoient des données vers l'application Monitoring Énergie ?",
+    "cypher": "MATCH (t:Thing)-[:IS_FEEDING_DATA_TO]->(a:Application {name: 'Monitoring Énergie'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs envoient des données vers l'application Éclairage Public Mobile ?",
+    "cypher": "MATCH (t:Thing)-[:IS_FEEDING_DATA_TO]->(a:Application {name: 'Éclairage Public Mobile'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont alimentés par Panneaux Solaires ?",
+    "cypher": "MATCH (t:Thing)-[:IS_POWERED_BY]->(p:Power {name: 'Panneaux Solaires'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont alimentés par Batterie ?",
+    "cypher": "MATCH (t:Thing)-[:IS_POWERED_BY]->(p:Power {name: 'Batterie'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont alimentés par Réseau Électrique ?",
+    "cypher": "MATCH (t:Thing)-[:IS_POWERED_BY]->(p:Power {name: 'Réseau Électrique'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont fournis par ÉcoSolutions ?",
+    "cypher": "MATCH (t:Thing)-[:IS_FROM_VENDOR]->(v:Vendor {name: 'ÉcoSolutions'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont fournis par TechVert ?",
+    "cypher": "MATCH (t:Thing)-[:IS_FROM_VENDOR]->(v:Vendor {name: 'TechVert'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs sont fournis par SmartCity Solutions ?",
+    "cypher": "MATCH (t:Thing)-[:IS_FROM_VENDOR]->(v:Vendor {name: 'SmartCity Solutions'}) RETURN t.identifier AS capteur_id, t.name AS nom_capteur"
+  },
+  {
+    "question": "Quels capteurs installés à la Mairie sont alimentés par panneaux solaires ?",
+    "cypher": "MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'Mairie'}), (t)-[:IS_POWERED_BY]->(p:Power {name: 'Panneaux Solaires'}) RETURN t.identifier, t.name"
+  },
+  {
+    "question": "Quels capteurs utilisant le réseau SigFox sont installés à l'École Primaire ?",
+    "cypher": "MATCH (t:Thing)-[:IS_USING]->(n:Network {name: 'Réseau SigFox'}), (t)-[:IS_INSTALLED_IN]->(l:Location {name: 'École Primaire'}) RETURN t.identifier, t.name"
+  },
+  {
+    "question": "Quels sont les modules installés sur Capteur14 ?",
+    "cypher": "MATCH (t:Thing {identifier: 'Capteur14'})-[:IS_EQUIPPED_WITH]->(m:Module) RETURN m.name"
+  },
+  {
+    "question": "Quelle est la chaîne de fournisseurs pour Capteur01 ?",
+    "cypher": "MATCH (t:Thing {identifier: 'Capteur01'})-[:IS_FROM_VENDOR]->(v:Vendor), (t)-[:IS_MANUFACTURED_BY]->(m:Manufacturer) RETURN v.name AS vendor, m.name AS manufacturer"
+  },
+  {
+    "question": "Quels capteurs de type 'Station Météo' sont installés à la Toiture de la Mairie ?",
+    "cypher": "MATCH (t:Thing)-[:IS_OF_TYPE]->(tt:ThingType {name: 'Station Météo'}), (t)-[:IS_INSTALLED_IN]->(l:Location {name: 'Toiture de la Mairie'}) RETURN t.identifier, t.name"
+  },
+  {
+    "question": "Quels capteurs mesurent à la fois la température et la pression ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s1:Sensor {name: 'Capteur Température'}),\n                  (t)-[:IS_COMPONENT_OF]->(s2:Sensor {name: 'Capteur Pression'})\n            RETURN t.identifier, t.name\n        "
+  },
+  {
+    "question": "Quels capteurs utilisent le réseau LoRaWAN et sont alimentés par une batterie ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_USING]->(n:Network {name: 'Réseau LoRaWAN'}),\n                  (t)-[:IS_POWERED_BY]->(p:Power {name: 'Batterie'})\n            RETURN t.identifier, t.name\n        "
+  },
+  {
+    "question": "Quels sont les capteurs fabriqués par Libellium et utilisés à l'École Primaire ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_MANUFACTURED_BY]->(m:Manufacturer {name: 'Libellium'}),\n                  (t)-[:IS_INSTALLED_IN]->(l:Location {name: 'École Primaire'})\n            RETURN t.identifier, t.name\n        "
+  },
+  {
+    "question": "Combien de capteurs sont installés à chaque emplacement ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location)\n            RETURN l.name AS location, count(t) AS number_of_sensors\n            ORDER BY number_of_sensors DESC\n        "
+  },
+  {
+    "question": "Quels capteurs installés dans la Mairie mesurent le CO2 et sont connectés en WiFi ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'Mairie'}),\n                  (t)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Capteur CO2'}),\n                  (t)-[:IS_EQUIPPED_WITH]->(m:Module {name: 'Module WiFi'})\n            RETURN t.identifier, t.name\n        "
+  },
+  {
+    "question": "Quels capteurs mesurent la température et sont utilisés par le département Services Techniques ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Capteur Température'}),\n                  (t)-[:IS_FEEDING_DATA_TO]->(a:Application),\n                  (a)-[:IS_USED_BY]->(d:Department {name: 'Services Techniques'})\n            RETURN t.identifier, t.name\n        "
+  },
+  {
+    "question": "Quels sont les types de capteurs installés à l'École Primaire ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'École Primaire'}),\n                  (t)-[:IS_COMPONENT_OF]->(s:Sensor)\n            RETURN DISTINCT s.name AS sensor_type\n        "
+  },
+  {
+    "question": "Quels sont les fournisseurs ayant fourni des capteurs mesurant le niveau d'eau ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Capteur Niveau d'Eau'}),\n                  (t)-[:IS_FROM_VENDOR]->(v:Vendor)\n            RETURN DISTINCT v.name AS vendor\n        "
+  },
+  {
+    "question": "Quels capteurs mesurent la consommation énergétique et sont installés sur la Toiture de la Mairie ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Compteur Énergie'}),\n                  (t)-[:IS_INSTALLED_IN]->(l:Location {name: 'Toiture de la Mairie'})\n            RETURN t.identifier, t.name\n        "
+  },
+  {
+    "question": "Quels capteurs installés à la Mairie envoient leurs données à plus d'une application ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'Mairie'}),\n                  (t)-[:IS_FEEDING_DATA_TO]->(a:Application)\n            WITH t, count(a) AS app_count\n            WHERE app_count > 1\n            RETURN t.identifier, t.name, app_count\n        "
+  },
+  {
+    "question": "Quels capteurs sont à la fois fabriqués par Schneider Electric et utilisent le réseau GPRS ?",
+    "cypher": "\n            MATCH (t:Thing)-[:IS_MANUFACTURED_BY]->(m:Manufacturer {name: 'Schneider Electric'}),\n                  (t)-[:IS_USING]->(n:Network {name: 'GPRS'})\n            RETURN t.identifier, t.name\n        "
+  },
+  {
+    "question": "Quels capteurs mesurent la température et sont installés dans des lieux alimentés par des panneaux solaires ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor {name: 'Capteur Température'}),\n              (t)-[:IS_INSTALLED_IN]->(l:Location),\n              (l)-[:IS_POWERED_BY]->(p:Power {name: 'Panneaux Solaires'})\n        RETURN t.identifier, t.name, l.name\n        "
+  },
+  {
+    "question": "Quels capteurs envoient des données vers plus d'une application ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_FEEDING_DATA_TO]->(a:Application)\n        WITH t, count(a) AS app_count\n        WHERE app_count > 1\n        RETURN t.identifier, app_count\n        "
+  },
+  {
+    "question": "Quels types de capteurs sont utilisés dans chaque lieu ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_OF_TYPE]->(tt:ThingType),\n              (t)-[:IS_INSTALLED_IN]->(l:Location)\n        RETURN l.name AS location, collect(DISTINCT tt.name) AS sensor_types\n        "
+  },
+  {
+    "question": "Quels capteurs fabriqués par Siemens sont installés dans plus d'un lieu ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_MANUFACTURED_BY]->(m:Manufacturer {name: 'Siemens'}),\n              (t)-[:IS_INSTALLED_IN]->(l:Location)\n        WITH t, count(DISTINCT l) AS location_count\n        WHERE location_count > 1\n        RETURN t.identifier, location_count\n        "
+  },
+  {
+    "question": "Quels sont les capteurs qui utilisent LoRaWAN et qui sont associés à une consommation électrique supérieure à zéro ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_USING]->(n:Network {name: 'Réseau LoRaWAN'}),\n              (t)-[r:IS_POWERED_BY]->(p:Power)\n        WHERE toFloat(REPLACE(r.consommation, 'W', '')) > 0\n        RETURN t.identifier, r.consommation\n        "
+  },
+  {
+    "question": "Combien de capteurs par type de ThingType sont installés dans chaque lieu ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_OF_TYPE]->(tt:ThingType),\n              (t)-[:IS_INSTALLED_IN]->(l:Location)\n        RETURN l.name AS location, tt.name AS type, count(t) AS sensor_count\n        ORDER BY location, sensor_count DESC\n        "
+  },
+  {
+    "question": "Quelles sont les combinaisons de fournisseurs et de fabricants pour les capteurs installés à la Mairie ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_INSTALLED_IN]->(l:Location {name: 'Mairie'}),\n              (t)-[:IS_FROM_VENDOR]->(v:Vendor),\n              (t)-[:IS_MANUFACTURED_BY]->(m:Manufacturer)\n        RETURN t.identifier, v.name AS vendor, m.name AS manufacturer\n        "
+  },
+  {
+    "question": "Quels capteurs de type Sécurité sont contrôlés par des applications et installés au Parking Ombrières ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_OF_TYPE]->(tt:ThingType {name: 'Sécurité'}),\n              (t)-[:IS_INSTALLED_IN]->(l:Location {name: 'Parking Ombrières'}),\n              (a:Application)-[:IS_CONTROLLING]->(t)\n        RETURN t.identifier, a.name AS application\n        "
+  },
+  {
+    "question": "Quels capteurs utilisent à la fois Bluetooth et WiFi ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_EQUIPPED_WITH]->(m1:Module {name: 'Module Bluetooth'}),\n              (t)-[:IS_EQUIPPED_WITH]->(m2:Module {name: 'Module WiFi'})\n        RETURN t.identifier, t.name\n        "
+  },
+  {
+    "question": "Quels capteurs mesurent plusieurs composants (au moins deux IS_COMPONENT_OF) ?",
+    "cypher": "\n        MATCH (t:Thing)-[:IS_COMPONENT_OF]->(s:Sensor)\n        WITH t, count(s) AS component_count\n        WHERE component_count >= 2\n        RETURN t.identifier, component_count\n        "
+  }
+]

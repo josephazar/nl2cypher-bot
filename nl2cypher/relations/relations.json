@@ -1,0 +1,914 @@
+[
+  {
+    "relation": "Capteur01,IS_INSTALLED_IN,Mairie,\"{installation_date: '2023-06-15', last_maintenance: '2023-12-10'}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_INSTALLED_IN with Mairie, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur02,IS_INSTALLED_IN,Ecole_Primaire,\"{installation_date: '2023-05-20', last_maintenance: '2023-11-05'}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_INSTALLED_IN with Ecole_Primaire, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur03,IS_INSTALLED_IN,Ecole_Maternelle,\"{installation_date: '2023-05-20', last_maintenance: '2023-11-05'}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_INSTALLED_IN with Ecole_Maternelle, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur04,IS_INSTALLED_IN,Ecole_Maternelle,\"{installation_date: '2023-05-20', last_maintenance: '2023-11-05'}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_INSTALLED_IN with Ecole_Maternelle, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur05,IS_INSTALLED_IN,Salle_des_Fetes,\"{installation_date: '2023-07-30', last_maintenance: '2024-01-15'}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_INSTALLED_IN with Salle_des_Fetes, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur06,IS_INSTALLED_IN,Place_de_la_Poste,\"{installation_date: '2023-08-12', last_maintenance: '2024-02-05'}\"",
+    "description": "Capteur06 is a Thing that has a relationship IS_INSTALLED_IN with Place_de_la_Poste, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur07,IS_INSTALLED_IN,Smart_Grid,\"{installation_date: '2023-09-25', last_maintenance: '2024-03-10'}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_INSTALLED_IN with Smart_Grid, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur08,IS_INSTALLED_IN,Toiture_Mairie,\"{installation_date: '2023-06-18', last_maintenance: '2023-12-20'}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_INSTALLED_IN with Toiture_Mairie, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur09,IS_INSTALLED_IN,Reservoir_Eau,\"{installation_date: '2023-10-05', last_maintenance: '2024-03-25'}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_INSTALLED_IN with Reservoir_Eau, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur10,IS_INSTALLED_IN,Rue_des_Ecoles,\"{installation_date: '2023-08-12', last_maintenance: '2024-02-05'}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_INSTALLED_IN with Rue_des_Ecoles, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur11,IS_INSTALLED_IN,Local_Chaufferie,\"{installation_date: '2023-09-30', last_maintenance: '2024-03-15'}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_INSTALLED_IN with Local_Chaufferie, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur12,IS_INSTALLED_IN,Station_Hydrogene,\"{installation_date: '2023-11-20', last_maintenance: '2024-03-20'}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_INSTALLED_IN with Station_Hydrogene, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur01,IS_POWERED_BY,reseau,\"{consommation: '0.5W'}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_POWERED_BY with reseau, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur02,IS_POWERED_BY,batterie,\"{life_starts: '2023-05-20', life_finish: '2025-05-20'}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur03,IS_POWERED_BY,batterie,\"{life_starts: '2023-05-20', life_finish: '2025-05-20'}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur04,IS_POWERED_BY,batterie,\"{life_starts: '2023-05-20', life_finish: '2025-05-20'}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur05,IS_POWERED_BY,reseau,\"{consommation: '0.7W'}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_POWERED_BY with reseau, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur06,IS_POWERED_BY,solaire,\"{date_installed: '2023-08-12', puissance: '15W'}\"",
+    "description": "Capteur06 is a Thing that has a relationship IS_POWERED_BY with solaire, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur07,IS_POWERED_BY,reseau,\"{consommation: '1.2W'}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_POWERED_BY with reseau, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur08,IS_POWERED_BY,solaire,\"{date_installed: '2023-06-18', puissance: '0W'}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_POWERED_BY with solaire, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur09,IS_POWERED_BY,batterie,\"{life_starts: '2023-10-05', life_finish: '2025-10-05'}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur10,IS_POWERED_BY,solaire,\"{date_installed: '2023-08-12', puissance: '10W'}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_POWERED_BY with solaire, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur11,IS_POWERED_BY,reseau,\"{consommation: '0.8W'}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_POWERED_BY with reseau, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur12,IS_POWERED_BY,reseau,\"{consommation: '1.5W'}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_POWERED_BY with reseau, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur01,IS_USING,lorawan,\"{app_id: 'badevel_mairie', dev_id: 'temp_01'}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur02,IS_USING,lorawan,\"{app_id: 'badevel_ecole', dev_id: 'lum_01'}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur03,IS_USING,lorawan,\"{app_id: 'badevel_ecole', dev_id: 'hum_01'}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur04,IS_USING,lorawan,\"{app_id: 'badevel_ecole', dev_id: 'temp_02'}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur05,IS_USING,lorawan,\"{app_id: 'badevel_sdf', dev_id: 'air_01'}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur06,IS_USING,sigfox,\"{id: 'eclairage_01'}\"",
+    "description": "Capteur06 is a Thing that has a relationship IS_USING with sigfox, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur07,IS_USING,fibre,\"{ip: '192.168.1.10'}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_USING with fibre, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur08,IS_USING,lorawan,\"{app_id: 'badevel_energie', dev_id: 'sol_01'}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur09,IS_USING,nbiot,\"{id: 'eau_01'}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_USING with nbiot, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur10,IS_USING,sigfox,\"{id: 'eclairage_02'}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_USING with sigfox, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur11,IS_USING,lorawan,\"{app_id: 'badevel_energie', dev_id: 'chaud_01'}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur12,IS_USING,fibre,\"{ip: '192.168.1.11'}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_USING with fibre, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur01,IS_MANUFACTURED_BY,schneider,\"{}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_MANUFACTURED_BY with schneider, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur02,IS_MANUFACTURED_BY,delta_dore,\"{}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_MANUFACTURED_BY with delta_dore, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur03,IS_MANUFACTURED_BY,delta_dore,\"{}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_MANUFACTURED_BY with delta_dore, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur04,IS_MANUFACTURED_BY,delta_dore,\"{}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_MANUFACTURED_BY with delta_dore, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur05,IS_MANUFACTURED_BY,schneider,\"{}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_MANUFACTURED_BY with schneider, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur06,IS_MANUFACTURED_BY,siemens,\"{}\"",
+    "description": "Capteur06 is a Thing that has a relationship IS_MANUFACTURED_BY with siemens, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur07,IS_MANUFACTURED_BY,schneider,\"{}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_MANUFACTURED_BY with schneider, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur08,IS_MANUFACTURED_BY,schneider,\"{}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_MANUFACTURED_BY with schneider, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur09,IS_MANUFACTURED_BY,libellium,\"{}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_MANUFACTURED_BY with libellium, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur10,IS_MANUFACTURED_BY,siemens,\"{}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_MANUFACTURED_BY with siemens, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur11,IS_MANUFACTURED_BY,schneider,\"{}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_MANUFACTURED_BY with schneider, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur12,IS_MANUFACTURED_BY,senra,\"{}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_MANUFACTURED_BY with senra, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur01,IS_FROM_VENDOR,ecosolutions,\"{}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_FROM_VENDOR with ecosolutions, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur02,IS_FROM_VENDOR,techvert,\"{}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_FROM_VENDOR with techvert, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur03,IS_FROM_VENDOR,techvert,\"{}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_FROM_VENDOR with techvert, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur04,IS_FROM_VENDOR,techvert,\"{}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_FROM_VENDOR with techvert, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur05,IS_FROM_VENDOR,ecosolutions,\"{}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_FROM_VENDOR with ecosolutions, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur06,IS_FROM_VENDOR,innovenergy,\"{}\"",
+    "description": "Capteur06 is a Thing that has a relationship IS_FROM_VENDOR with innovenergy, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur07,IS_FROM_VENDOR,smartcity,\"{}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_FROM_VENDOR with smartcity, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur08,IS_FROM_VENDOR,ecosolutions,\"{}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_FROM_VENDOR with ecosolutions, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur09,IS_FROM_VENDOR,ecoplus,\"{}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_FROM_VENDOR with ecoplus, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur10,IS_FROM_VENDOR,innovenergy,\"{}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_FROM_VENDOR with innovenergy, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur11,IS_FROM_VENDOR,smartcity,\"{}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_FROM_VENDOR with smartcity, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur12,IS_FROM_VENDOR,smartcity,\"{}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_FROM_VENDOR with smartcity, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur01,IS_OF_TYPE,chauffage,\"{}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_OF_TYPE with chauffage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur02,IS_OF_TYPE,eclairage,\"{}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_OF_TYPE with eclairage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur03,IS_OF_TYPE,chauffage,\"{}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_OF_TYPE with chauffage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur04,IS_OF_TYPE,chauffage,\"{}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_OF_TYPE with chauffage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur05,IS_OF_TYPE,chauffage,\"{}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_OF_TYPE with chauffage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur06,IS_OF_TYPE,eclairage,\"{}\"",
+    "description": "Capteur06 is a Thing that has a relationship IS_OF_TYPE with eclairage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur07,IS_OF_TYPE,energie,\"{}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_OF_TYPE with energie, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur08,IS_OF_TYPE,energie,\"{}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_OF_TYPE with energie, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur09,IS_OF_TYPE,qualite_eau,\"{}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_OF_TYPE with qualite_eau, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur10,IS_OF_TYPE,eclairage,\"{}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_OF_TYPE with eclairage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur11,IS_OF_TYPE,chauffage,\"{}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_OF_TYPE with chauffage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur12,IS_OF_TYPE,energie,\"{}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_OF_TYPE with energie, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur02,IS_EQUIPPED_WITH,camera,\"{}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_EQUIPPED_WITH with camera, which is a Module. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur09,IS_EQUIPPED_WITH,gps,\"{}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_EQUIPPED_WITH with gps, which is a Module. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur10,IS_EQUIPPED_WITH,gps,\"{}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_EQUIPPED_WITH with gps, which is a Module. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur01,IS_COMPONENT_OF,temperature,\"{range_min: 5, range_max: 35, unit: '°C', current_value: '22.5°C'}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_COMPONENT_OF with temperature, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur02,IS_COMPONENT_OF,luminosite,\"{range_min: 0, range_max: 2000, unit: 'lux', current_value: '450 lux'}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_COMPONENT_OF with luminosite, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur03,IS_COMPONENT_OF,humidite,\"{range_min: 0, range_max: 100, unit: '%', current_value: '43%'}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_COMPONENT_OF with humidite, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur04,IS_COMPONENT_OF,temperature,\"{range_min: 5, range_max: 35, unit: '°C', current_value: '20.8°C'}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_COMPONENT_OF with temperature, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur05,IS_COMPONENT_OF,qualite_air,\"{range_min: 0, range_max: 100, unit: 'index', current_value: '97/100'}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_COMPONENT_OF with qualite_air, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur06,IS_COMPONENT_OF,presence,\"{sensitivity: 'medium', current_value: 'ON'}\"",
+    "description": "Capteur06 is a Thing that has a relationship IS_COMPONENT_OF with presence, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur07,IS_COMPONENT_OF,consommation,\"{range_min: 0, range_max: 50, unit: 'kWh', current_value: '4.2 kWh'}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_COMPONENT_OF with consommation, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur08,IS_COMPONENT_OF,production,\"{range_min: 0, range_max: 15, unit: 'kWh', current_value: '2.8 kWh'}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_COMPONENT_OF with production, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur09,IS_COMPONENT_OF,niveau_eau,\"{range_min: 0, range_max: 100, unit: '%', current_value: 'Excellente'}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_COMPONENT_OF with niveau_eau, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur10,IS_COMPONENT_OF,presence,\"{sensitivity: 'high', current_value: 'OFF'}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_COMPONENT_OF with presence, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur11,IS_COMPONENT_OF,temperature,\"{range_min: 0, range_max: 100, unit: '°C', current_value: '65.3°C'}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_COMPONENT_OF with temperature, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur12,IS_COMPONENT_OF,niveau_eau,\"{range_min: 0, range_max: 100, unit: '%', current_value: '72%'}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_COMPONENT_OF with niveau_eau, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur01,IS_FEEDING_DATA_TO,application05,\"{}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_FEEDING_DATA_TO with application05, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur02,IS_FEEDING_DATA_TO,application03,\"{}\"",
+    "description": "Capteur02 is a Thing that has a relationship IS_FEEDING_DATA_TO with application03, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur03,IS_FEEDING_DATA_TO,application05,\"{}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_FEEDING_DATA_TO with application05, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur04,IS_FEEDING_DATA_TO,application05,\"{}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_FEEDING_DATA_TO with application05, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur05,IS_FEEDING_DATA_TO,application04,\"{}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_FEEDING_DATA_TO with application04, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur06,IS_FEEDING_DATA_TO,application03,\"{}\"",
+    "description": "Capteur06 is a Thing that has a relationship IS_FEEDING_DATA_TO with application03, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur07,IS_FEEDING_DATA_TO,application01,\"{}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_FEEDING_DATA_TO with application01, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur08,IS_FEEDING_DATA_TO,application01,\"{}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_FEEDING_DATA_TO with application01, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur09,IS_FEEDING_DATA_TO,application02,\"{}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_FEEDING_DATA_TO with application02, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur10,IS_FEEDING_DATA_TO,application03,\"{}\"",
+    "description": "Capteur10 is a Thing that has a relationship IS_FEEDING_DATA_TO with application03, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur11,IS_FEEDING_DATA_TO,application05,\"{}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_FEEDING_DATA_TO with application05, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur12,IS_FEEDING_DATA_TO,application01,\"{}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_FEEDING_DATA_TO with application01, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "application03,IS_CONTROLLING,Capteur06,\"{}\"",
+    "description": "application03 is a Thing that has a relationship IS_CONTROLLING with Capteur06, which is a Thing. This implies the source has control capabilities over the target, such as actuators or automated commands."
+  },
+  {
+    "relation": "application03,IS_CONTROLLING,Capteur10,\"{}\"",
+    "description": "application03 is a Thing that has a relationship IS_CONTROLLING with Capteur10, which is a Thing. This implies the source has control capabilities over the target, such as actuators or automated commands."
+  },
+  {
+    "relation": "application01,IS_CONTROLLING,Smart_Grid,\"{}\"",
+    "description": "application01 is a Thing that has a relationship IS_CONTROLLING with Smart_Grid, which is a Location. This implies the source has control capabilities over the target, such as actuators or automated commands."
+  },
+  {
+    "relation": "application05,IS_CONTROLLING,Local_Chaufferie,\"{}\"",
+    "description": "application05 is a Thing that has a relationship IS_CONTROLLING with Local_Chaufferie, which is a Location. This implies the source has control capabilities over the target, such as actuators or automated commands."
+  },
+  {
+    "relation": "application05,IS_USED_BY,it,\"{}\"",
+    "description": "application05 is a Thing that has a relationship IS_USED_BY with it, which is a Unknown. This shows the department or entity using or benefiting from the application."
+  },
+  {
+    "relation": "application02,IS_USED_BY,wm,\"{}\"",
+    "description": "application02 is a Thing that has a relationship IS_USED_BY with wm, which is a Unknown. This shows the department or entity using or benefiting from the application."
+  },
+  {
+    "relation": "application03,IS_USED_BY,fs,\"{}\"",
+    "description": "application03 is a Thing that has a relationship IS_USED_BY with fs, which is a Unknown. This shows the department or entity using or benefiting from the application."
+  },
+  {
+    "relation": "application01,IS_USED_BY,it,\"{}\"",
+    "description": "application01 is a Thing that has a relationship IS_USED_BY with it, which is a Unknown. This shows the department or entity using or benefiting from the application."
+  },
+  {
+    "relation": "application04,IS_USED_BY,it,\"{}\"",
+    "description": "application04 is a Thing that has a relationship IS_USED_BY with it, which is a Unknown. This shows the department or entity using or benefiting from the application."
+  },
+  {
+    "relation": "application06,IS_USED_BY,fs,\"{}\"",
+    "description": "application06 is a Thing that has a relationship IS_USED_BY with fs, which is a Unknown. This shows the department or entity using or benefiting from the application."
+  },
+  {
+    "relation": "Capteur13,IS_INSTALLED_IN,Ateliers_Municipaux,\"{installation_date: '2023-07-15', last_maintenance: '2024-01-20'}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_INSTALLED_IN with Ateliers_Municipaux, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur13,IS_POWERED_BY,reseau,\"{consommation: '0.6W'}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_POWERED_BY with reseau, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur13,IS_USING,lorawan,\"{app_id: 'badevel_energie', dev_id: 'conso_02'}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur13,IS_MANUFACTURED_BY,schneider,\"{}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_MANUFACTURED_BY with schneider, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur13,IS_FROM_VENDOR,ecosolutions,\"{}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_FROM_VENDOR with ecosolutions, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur13,IS_OF_TYPE,energie,\"{}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_OF_TYPE with energie, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur13,IS_COMPONENT_OF,consommation,\"{range_min: 0, range_max: 20, unit: 'kWh', current_value: '1.8 kWh'}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_COMPONENT_OF with consommation, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur13,IS_FEEDING_DATA_TO,application01,\"{}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_FEEDING_DATA_TO with application01, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur14,IS_INSTALLED_IN,Parking_Ombrieres,\"{installation_date: '2023-10-10', last_maintenance: '2024-02-25'}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_INSTALLED_IN with Parking_Ombrieres, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur14,IS_POWERED_BY,solaire,\"{date_installed: '2023-10-10', puissance: '0.3W'}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_POWERED_BY with solaire, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur14,IS_USING,sigfox,\"{id: 'presence_01'}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_USING with sigfox, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur14,IS_MANUFACTURED_BY,siemens,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_MANUFACTURED_BY with siemens, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur14,IS_FROM_VENDOR,smartcity,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_FROM_VENDOR with smartcity, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur14,IS_OF_TYPE,securite,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_OF_TYPE with securite, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur14,IS_COMPONENT_OF,presence,\"{sensitivity: 'low', current_value: '0'}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_COMPONENT_OF with presence, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur14,IS_FEEDING_DATA_TO,application04,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_FEEDING_DATA_TO with application04, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur14,IS_EQUIPPED_WITH,infrarouge,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_EQUIPPED_WITH with infrarouge, which is a Sensor. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur15,IS_INSTALLED_IN,Ecole_Primaire,\"{installation_date: '2023-09-05', last_maintenance: '2024-03-01'}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_INSTALLED_IN with Ecole_Primaire, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur15,IS_POWERED_BY,batterie,\"{life_starts: '2023-09-05', life_finish: '2025-09-05'}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur15,IS_USING,lorawan,\"{app_id: 'badevel_eau', dev_id: 'cuve_01'}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur15,IS_MANUFACTURED_BY,libellium,\"{}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_MANUFACTURED_BY with libellium, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur15,IS_FROM_VENDOR,ecoplus,\"{}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_FROM_VENDOR with ecoplus, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur15,IS_OF_TYPE,qualite_eau,\"{}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_OF_TYPE with qualite_eau, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur15,IS_COMPONENT_OF,niveau_eau,\"{range_min: 0, range_max: 100, unit: '%', current_value: '83%'}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_COMPONENT_OF with niveau_eau, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur15,IS_FEEDING_DATA_TO,application02,\"{}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_FEEDING_DATA_TO with application02, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur16,IS_COMPONENT_OF,co2,\"{range_min: 300, range_max: 5000, unit: 'ppm', current_value: '642 ppm'}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_COMPONENT_OF with co2, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur16,IS_INSTALLED_IN,Ecole_Primaire,\"{installation_date: '2023-05-20', last_maintenance: '2023-11-05'}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_INSTALLED_IN with Ecole_Primaire, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur16,IS_POWERED_BY,reseau,\"{consommation: '0.6W'}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_POWERED_BY with reseau, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur16,IS_USING,lorawan,\"{app_id: 'badevel_ecole', dev_id: 'co2_01'}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur16,IS_MANUFACTURED_BY,delta_dore,\"{}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_MANUFACTURED_BY with delta_dore, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur16,IS_FROM_VENDOR,techvert,\"{}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_FROM_VENDOR with techvert, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur16,IS_OF_TYPE,chauffage,\"{}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_OF_TYPE with chauffage, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur16,IS_FEEDING_DATA_TO,application05,\"{}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_FEEDING_DATA_TO with application05, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur17,IS_COMPONENT_OF,pluviometre,\"{range_min: 0, range_max: 50, unit: 'mm/h', current_value: '0 mm/h'}\"",
+    "description": "Capteur17 is a Thing that has a relationship IS_COMPONENT_OF with pluviometre, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur17,IS_INSTALLED_IN,Toiture_Mairie,\"{installation_date: '2023-06-18', last_maintenance: '2023-12-20'}\"",
+    "description": "Capteur17 is a Thing that has a relationship IS_INSTALLED_IN with Toiture_Mairie, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur17,IS_POWERED_BY,solaire,\"{date_installed: '2023-06-18', puissance: '1W'}\"",
+    "description": "Capteur17 is a Thing that has a relationship IS_POWERED_BY with solaire, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur17,IS_USING,lorawan,\"{app_id: 'badevel_meteo', dev_id: 'pluv_01'}\"",
+    "description": "Capteur17 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur17,IS_MANUFACTURED_BY,libellium,\"{}\"",
+    "description": "Capteur17 is a Thing that has a relationship IS_MANUFACTURED_BY with libellium, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur17,IS_FROM_VENDOR,ecosolutions,\"{}\"",
+    "description": "Capteur17 is a Thing that has a relationship IS_FROM_VENDOR with ecosolutions, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur17,IS_OF_TYPE,meteo,\"{}\"",
+    "description": "Capteur17 is a Thing that has a relationship IS_OF_TYPE with meteo, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur17,IS_FEEDING_DATA_TO,application04,\"{}\"",
+    "description": "Capteur17 is a Thing that has a relationship IS_FEEDING_DATA_TO with application04, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur18,IS_COMPONENT_OF,anemometre,\"{range_min: 0, range_max: 150, unit: 'km/h', current_value: '12 km/h'}\"",
+    "description": "Capteur18 is a Thing that has a relationship IS_COMPONENT_OF with anemometre, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur18,IS_INSTALLED_IN,Toiture_Mairie,\"{installation_date: '2023-06-18', last_maintenance: '2023-12-20'}\"",
+    "description": "Capteur18 is a Thing that has a relationship IS_INSTALLED_IN with Toiture_Mairie, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur18,IS_POWERED_BY,solaire,\"{date_installed: '2023-06-18', puissance: '1.5W'}\"",
+    "description": "Capteur18 is a Thing that has a relationship IS_POWERED_BY with solaire, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur18,IS_USING,lorawan,\"{app_id: 'badevel_meteo', dev_id: 'anem_01'}\"",
+    "description": "Capteur18 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur18,IS_MANUFACTURED_BY,libellium,\"{}\"",
+    "description": "Capteur18 is a Thing that has a relationship IS_MANUFACTURED_BY with libellium, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur18,IS_FROM_VENDOR,ecosolutions,\"{}\"",
+    "description": "Capteur18 is a Thing that has a relationship IS_FROM_VENDOR with ecosolutions, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur18,IS_OF_TYPE,meteo,\"{}\"",
+    "description": "Capteur18 is a Thing that has a relationship IS_OF_TYPE with meteo, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur18,IS_FEEDING_DATA_TO,application04,\"{}\"",
+    "description": "Capteur18 is a Thing that has a relationship IS_FEEDING_DATA_TO with application04, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur19,IS_COMPONENT_OF,debit_eau,\"{range_min: 0, range_max: 100, unit: 'L/min', current_value: '2.3 L/min'}\"",
+    "description": "Capteur19 is a Thing that has a relationship IS_COMPONENT_OF with debit_eau, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur19,IS_INSTALLED_IN,Reservoir_Eau,\"{installation_date: '2023-10-05', last_maintenance: '2024-03-25'}\"",
+    "description": "Capteur19 is a Thing that has a relationship IS_INSTALLED_IN with Reservoir_Eau, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur19,IS_POWERED_BY,batterie,\"{life_starts: '2023-10-05', life_finish: '2025-10-05'}\"",
+    "description": "Capteur19 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur19,IS_USING,nbiot,\"{id: 'eau_02'}\"",
+    "description": "Capteur19 is a Thing that has a relationship IS_USING with nbiot, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur19,IS_MANUFACTURED_BY,libellium,\"{}\"",
+    "description": "Capteur19 is a Thing that has a relationship IS_MANUFACTURED_BY with libellium, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur19,IS_FROM_VENDOR,ecoplus,\"{}\"",
+    "description": "Capteur19 is a Thing that has a relationship IS_FROM_VENDOR with ecoplus, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur19,IS_OF_TYPE,qualite_eau,\"{}\"",
+    "description": "Capteur19 is a Thing that has a relationship IS_OF_TYPE with qualite_eau, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur19,IS_FEEDING_DATA_TO,application02,\"{}\"",
+    "description": "Capteur19 is a Thing that has a relationship IS_FEEDING_DATA_TO with application02, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur20,IS_COMPONENT_OF,porte,\"{sensitivity: 'medium', current_value: 'Fermé'}\"",
+    "description": "Capteur20 is a Thing that has a relationship IS_COMPONENT_OF with porte, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur20,IS_INSTALLED_IN,Mairie,\"{installation_date: '2023-06-15', last_maintenance: '2023-12-10'}\"",
+    "description": "Capteur20 is a Thing that has a relationship IS_INSTALLED_IN with Mairie, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur20,IS_POWERED_BY,batterie,\"{life_starts: '2023-06-15', life_finish: '2025-06-15'}\"",
+    "description": "Capteur20 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur20,IS_USING,lorawan,\"{app_id: 'badevel_securite', dev_id: 'porte_01'}\"",
+    "description": "Capteur20 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur20,IS_MANUFACTURED_BY,delta_dore,\"{}\"",
+    "description": "Capteur20 is a Thing that has a relationship IS_MANUFACTURED_BY with delta_dore, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur20,IS_FROM_VENDOR,smartcity,\"{}\"",
+    "description": "Capteur20 is a Thing that has a relationship IS_FROM_VENDOR with smartcity, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur20,IS_OF_TYPE,securite,\"{}\"",
+    "description": "Capteur20 is a Thing that has a relationship IS_OF_TYPE with securite, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur20,IS_FEEDING_DATA_TO,application04,\"{}\"",
+    "description": "Capteur20 is a Thing that has a relationship IS_FEEDING_DATA_TO with application04, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur21,IS_COMPONENT_OF,pression,\"{range_min: 900, range_max: 1100, unit: 'hPa', current_value: '1013 hPa'}\"",
+    "description": "Capteur21 is a Thing that has a relationship IS_COMPONENT_OF with pression, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur21,IS_INSTALLED_IN,Ecole_Maternelle,\"{installation_date: '2023-05-20', last_maintenance: '2023-11-05'}\"",
+    "description": "Capteur21 is a Thing that has a relationship IS_INSTALLED_IN with Ecole_Maternelle, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur21,IS_POWERED_BY,batterie,\"{life_starts: '2023-05-20', life_finish: '2025-05-20'}\"",
+    "description": "Capteur21 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur21,IS_USING,lorawan,\"{app_id: 'badevel_meteo', dev_id: 'press_01'}\"",
+    "description": "Capteur21 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur21,IS_MANUFACTURED_BY,libellium,\"{}\"",
+    "description": "Capteur21 is a Thing that has a relationship IS_MANUFACTURED_BY with libellium, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur21,IS_FROM_VENDOR,ecosolutions,\"{}\"",
+    "description": "Capteur21 is a Thing that has a relationship IS_FROM_VENDOR with ecosolutions, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur21,IS_OF_TYPE,meteo,\"{}\"",
+    "description": "Capteur21 is a Thing that has a relationship IS_OF_TYPE with meteo, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur21,IS_FEEDING_DATA_TO,application04,\"{}\"",
+    "description": "Capteur21 is a Thing that has a relationship IS_FEEDING_DATA_TO with application04, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Station_Hydrogene,IS_POWERED_BY,hydrogene,\"{capacite: '70kg'}\"",
+    "description": "Station_Hydrogene is a Location that has a relationship IS_POWERED_BY with hydrogene, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Local_Chaufferie,IS_POWERED_BY,biomasse,\"{capacite: '120kW'}\"",
+    "description": "Local_Chaufferie is a Location that has a relationship IS_POWERED_BY with biomasse, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur22,IS_EQUIPPED_WITH,wifi,\"{}\"",
+    "description": "Capteur22 is a Thing that has a relationship IS_EQUIPPED_WITH with wifi, which is a Module. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur22,IS_EQUIPPED_WITH,bluetooth,\"{}\"",
+    "description": "Capteur22 is a Thing that has a relationship IS_EQUIPPED_WITH with bluetooth, which is a Module. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur22,IS_USING,gprs,\"{}\"",
+    "description": "Capteur22 is a Thing that has a relationship IS_USING with gprs, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "application06,IS_USED_BY,fs,\"{}\"",
+    "description": "application06 is a Thing that has a relationship IS_USED_BY with fs, which is a Unknown. This shows the department or entity using or benefiting from the application."
+  },
+  {
+    "relation": "Capteur01,IS_FEEDING_DATA_TO,application06,\"{}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_FEEDING_DATA_TO with application06, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "application06,IS_CONTROLLING,Capteur02,\"{}\"",
+    "description": "application06 is a Thing that has a relationship IS_CONTROLLING with Capteur02, which is a Thing. This implies the source has control capabilities over the target, such as actuators or automated commands."
+  },
+  {
+    "relation": "Capteur16,IS_EQUIPPED_WITH,wifi,\"{}\"",
+    "description": "Capteur16 is a Thing that has a relationship IS_EQUIPPED_WITH with wifi, which is a Module. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur07,IS_EQUIPPED_WITH,bluetooth,\"{}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_EQUIPPED_WITH with bluetooth, which is a Module. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur12,IS_USING,gprs,\"{}\"",
+    "description": "Capteur12 is a Thing that has a relationship IS_USING with gprs, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur13,IS_INSTALLED_IN,Mairie,\"{installation_date: '2023-07-15', last_maintenance: '2024-01-20'}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_INSTALLED_IN with Mairie, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur13,IS_POWERED_BY,reseau,\"{consommation: '0.6W'}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_POWERED_BY with reseau, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur13,IS_USING,lorawan,\"{app_id: 'badevel_energie', dev_id: 'conso_02'}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur13,IS_MANUFACTURED_BY,schneider,\"{}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_MANUFACTURED_BY with schneider, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur13,IS_FROM_VENDOR,ecosolutions,\"{}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_FROM_VENDOR with ecosolutions, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur13,IS_OF_TYPE,energie,\"{}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_OF_TYPE with energie, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur13,IS_COMPONENT_OF,consommation,\"{range_min: 0, range_max: 20, unit: 'kWh', current_value: '1.8 kWh'}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_COMPONENT_OF with consommation, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur13,IS_FEEDING_DATA_TO,application01,\"{}\"",
+    "description": "Capteur13 is a Thing that has a relationship IS_FEEDING_DATA_TO with application01, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur14,IS_INSTALLED_IN,Mairie,\"{installation_date: '2023-10-10', last_maintenance: '2024-02-25'}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_INSTALLED_IN with Mairie, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur14,IS_POWERED_BY,solaire,\"{date_installed: '2023-10-10', puissance: '0.3W'}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_POWERED_BY with solaire, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur14,IS_USING,sigfox,\"{id: 'presence_01'}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_USING with sigfox, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur14,IS_MANUFACTURED_BY,siemens,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_MANUFACTURED_BY with siemens, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur14,IS_FROM_VENDOR,smartcity,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_FROM_VENDOR with smartcity, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur14,IS_OF_TYPE,securite,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_OF_TYPE with securite, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur14,IS_COMPONENT_OF,presence,\"{sensitivity: 'low', current_value: '0'}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_COMPONENT_OF with presence, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur14,IS_FEEDING_DATA_TO,application04,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_FEEDING_DATA_TO with application04, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur14,IS_EQUIPPED_WITH,infrarouge,\"{}\"",
+    "description": "Capteur14 is a Thing that has a relationship IS_EQUIPPED_WITH with infrarouge, which is a Sensor. This specifies that the thing includes hardware components like modules or secondary sensors."
+  },
+  {
+    "relation": "Capteur15,IS_INSTALLED_IN,Ecole_Primaire,\"{installation_date: '2023-09-05', last_maintenance: '2024-03-01'}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_INSTALLED_IN with Ecole_Primaire, which is a Location. This indicates the physical location where the sensor or device is installed. The relationship includes metadata like installation and maintenance info."
+  },
+  {
+    "relation": "Capteur15,IS_POWERED_BY,batterie,\"{life_starts: '2023-09-05', life_finish: '2025-09-05'}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_POWERED_BY with batterie, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur15,IS_USING,lorawan,\"{app_id: 'badevel_eau', dev_id: 'cuve_01'}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_USING with lorawan, which is a Network. This specifies the network technology the device uses to communicate, including fields such as app ID or device ID."
+  },
+  {
+    "relation": "Capteur15,IS_MANUFACTURED_BY,libellium,\"{}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_MANUFACTURED_BY with libellium, which is a Manufacturer. This shows who built the device or sensor."
+  },
+  {
+    "relation": "Capteur15,IS_FROM_VENDOR,ecoplus,\"{}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_FROM_VENDOR with ecoplus, which is a Vendor. This defines the vendor or supplier associated with the device."
+  },
+  {
+    "relation": "Capteur15,IS_OF_TYPE,qualite_eau,\"{}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_OF_TYPE with qualite_eau, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur15,IS_COMPONENT_OF,niveau_eau,\"{range_min: 0, range_max: 100, unit: '%', current_value: '83%'}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_COMPONENT_OF with niveau_eau, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur15,IS_FEEDING_DATA_TO,application02,\"{}\"",
+    "description": "Capteur15 is a Thing that has a relationship IS_FEEDING_DATA_TO with application02, which is a Unknown. This relationship shows the application that receives data from the device."
+  },
+  {
+    "relation": "Capteur04,IS_COMPONENT_OF,co2,\"{range_min: 300, range_max: 5000, unit: 'ppm', current_value: '642 ppm'}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_COMPONENT_OF with co2, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur03,IS_COMPONENT_OF,pression,\"{range_min: 900, range_max: 1100, unit: 'hPa', current_value: '1013 hPa'}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_COMPONENT_OF with pression, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur08,IS_COMPONENT_OF,pluviometre,\"{range_min: 0, range_max: 50, unit: 'mm/h', current_value: '0 mm/h'}\"",
+    "description": "Capteur08 is a Thing that has a relationship IS_COMPONENT_OF with pluviometre, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur09,IS_COMPONENT_OF,anemometre,\"{range_min: 0, range_max: 150, unit: 'km/h', current_value: '12 km/h'}\"",
+    "description": "Capteur09 is a Thing that has a relationship IS_COMPONENT_OF with anemometre, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur05,IS_COMPONENT_OF,debit_eau,\"{range_min: 0, range_max: 100, unit: 'L/min', current_value: '2.3 L/min'}\"",
+    "description": "Capteur05 is a Thing that has a relationship IS_COMPONENT_OF with debit_eau, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur01,IS_COMPONENT_OF,porte,\"{sensitivity: 'medium', current_value: 'Fermé'}\"",
+    "description": "Capteur01 is a Thing that has a relationship IS_COMPONENT_OF with porte, which is a Sensor. This links the device to a specific sensor component and can include data ranges and current values."
+  },
+  {
+    "relation": "Capteur03,IS_OF_TYPE,meteo,\"{}\"",
+    "description": "Capteur03 is a Thing that has a relationship IS_OF_TYPE with meteo, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur04,IS_OF_TYPE,meteo,\"{}\"",
+    "description": "Capteur04 is a Thing that has a relationship IS_OF_TYPE with meteo, which is a ThingType. This classifies the device under a certain functional type (e.g., energy monitoring, lighting, etc.)."
+  },
+  {
+    "relation": "Capteur07,IS_POWERED_BY,hydrogene,\"{capacite: '5kW'}\"",
+    "description": "Capteur07 is a Thing that has a relationship IS_POWERED_BY with hydrogene, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  },
+  {
+    "relation": "Capteur11,IS_POWERED_BY,biomasse,\"{capacite: '60kW'}\"",
+    "description": "Capteur11 is a Thing that has a relationship IS_POWERED_BY with biomasse, which is a Power. This defines the power source or energy supply. The relationship may describe consumption, installation, or power characteristics."
+  }
+]

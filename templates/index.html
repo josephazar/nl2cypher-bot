@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %}Badevel Living Lab Assistant{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Chat Area -->
+    <div class="col-lg-8">
+        <div class="card chat-card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Chat avec l'Assistant du Living Lab</h5>
+            </div>
+            <div class="card-body">
+                <div class="chat-container" id="chat-container">
+                    <!-- Welcome message -->
+                    <div class="chat-message assistant-message">
+                        <div class="message-content">
+                            <p>Bonjour ! Je suis l'Assistant du Living Lab de Badevel. Comment puis-je vous aider aujourd'hui ?</p>
+                        </div>
+                    </div>
+                    <!-- Messages will be added here dynamically -->
+                </div>
+                
+                <!-- Input area -->
+                <div class="chat-input-container">
+                    <form id="chat-form" class="d-flex">
+                        <input type="text" id="user-input" class="form-control" placeholder="Posez une question sur le village intelligent..." autocomplete="off">
+                        <button type="submit" class="btn btn-primary send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <button type="button" id="speech-btn" class="btn btn-secondary speech-btn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </form>
+                    <div id="speech-status" class="speech-status">Cliquez sur le microphone pour parler</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Suggestion buttons -->
+        <div class="suggestion-container mt-4">
+            <h5>Suggestions de questions:</h5>
+            <div class="row">
+                {% for example in examples %}
+                <div class="col-md-6 col-lg-4 mb-2">
+                    <button class="suggestion-btn w-100" data-query="{{ example }}">{{ example }}</button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Visualization Area -->
+    <div class="col-lg-4">
+        <div class="card viz-card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Visualisation</h5>
+            </div>
+            <div class="card-body">
+                <div id="viz-placeholder" class="viz-placeholder">
+                    <i class="fas fa-project-diagram viz-icon"></i>
+                    <p>La visualisation du graphe apparaîtra ici lorsque des données seront disponibles.</p>
+                </div>
+                <div id="viz-container" class="viz-container d-none"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Pass speech token to frontend -->
+<script>
+    // Debug: print raw values from Jinja
+    console.log("Raw values from backend:", {
+        token: "{{ speech_token.token }}",
+        region: "{{ speech_token.region }}",
+        language: "{{ speech_token.language }}",
+        error: "{{ speech_token.error }}"
+    });
+    
+    // Ensure speechConfig is defined in the global scope
+    window.speechConfig = {
+        token: "{{ speech_token.token }}",
+        region: "{{ speech_token.region }}",
+        language: "{{ speech_token.language }}",
+        error: "{{ speech_token.error }}"
+    };
+    console.log("Speech config loaded:", window.speechConfig);
+</script>
+
+<!-- Chat functionality -->
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+<!-- Speech recognition -->
+<script src="{{ url_for('static', filename='js/speech.js') }}"></script>
+
+<!-- Graph visualization -->
+<script src="{{ url_for('static', filename='js/graph.js') }}"></script>
+{% endblock %}
