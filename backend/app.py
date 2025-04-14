@@ -86,25 +86,12 @@ class CypherVisualizationQuery(BaseModel):
             
             # Add schema context if available
             if schema_context:
-                # Extract relevant parts from schema
-                node_labels = []
-                if 'nodeLabels' in schema_context:
-                    node_labels = [label_info.get('label') for label_info in schema_context.get('nodeLabels', [])]
-                
-                relationship_types = []
-                if 'relationshipTypes' in schema_context:
-                    relationship_types = [rel_info.get('relationshipType') for rel_info in schema_context.get('relationshipTypes', [])]
-                
                 system_prompt += f"""
-                
-                Available node labels: {', '.join(node_labels)}
-                Available relationship types: {', '.join(relationship_types)}
-                
-                A good visualization query should include both nodes and relationships, like:
-                
-                MATCH (n:{node_labels[0] if node_labels else 'SomeLabel'})-[r]->(m)
-                RETURN n, r, m LIMIT 25
+                The schema context is as follows:
+                {json.dumps(schema_context, indent=2)}
+                Use this context to validate and enhance the Cypher query.
                 """
+                #print(f"Schema context: {json.dumps(schema_context, indent=2)}")
             
             # Create user prompt
             user_prompt = f"""
@@ -142,9 +129,9 @@ def get_examples():
     examples = [
         "Quels sont les capteurs présents à l'école maternelle?",
         "Quelle est la température actuelle dans la mairie?",
-        "Montre-moi la consommation d'énergie de tous les bâtiments",
+        "Quels capteurs sont alimentés par panneaux solaires ?",
         "Quelles sont les relations entre les capteurs et les bâtiments?",
-        "Quelle est la production d'énergie solaire actuelle?"
+        "Quels capteurs sont installés à Mairie ?"
     ]
     return jsonify(examples)
 
@@ -260,13 +247,49 @@ def get_schema():
 
 @app.route('/api/neo4j/query', methods=['POST'])
 def run_query():
-    """Run a Cypher query against the Neo4j database"""
+    """Run a Cypher query against the Neo4j database and format response for visualization"""
     data = request.json
     query = data.get('query')
+    
     if not query:
         return jsonify({"status": "error", "message": "No query provided"})
     
+    # Log the query for debugging
+    logger.info(f"Running cypher query for visualization: {query}")
+    
+    # Get the result from Neo4j service
     result = neo4j_service.run_cypher_query(query)
+    
+    # If the query was successful, check if we need to enhance the result for visualization
+    if result.get("status") == "success":
+        logger.info(f"Query successful, returned {len(result.get('results', []))} records")
+        
+        # Additional processing could be done here for better visualization support
+        # For example, augmenting the results with additional metadata
+        
+        # Check if the query result contains nodes and relationships for visualization
+        has_nodes = False
+        has_relationships = False
+        
+        for record in result.get('results', []):
+            for key, value in record.items():
+                if isinstance(value, dict) and 'labels' in value:
+                    has_nodes = True
+                if isinstance(value, dict) and 'type' in value:
+                    has_relationships = True
+        
+        # Log visualization data characteristics
+        logger.info(f"Query result contains nodes: {has_nodes}, relationships: {has_relationships}")
+        
+        # Add helpful information for debugging
+        result['visualization_info'] = {
+            'has_nodes': has_nodes,
+            'has_relationships': has_relationships,
+            'record_count': len(result.get('results', [])),
+        }
+    else:
+        logger.error(f"Query error: {result.get('message')}")
+    
     return jsonify(result)
 
 if __name__ == '__main__':
